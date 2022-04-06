@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Display from "./Display";
+
 export class App extends Component {
   constructor() {
     super();
@@ -9,34 +10,25 @@ export class App extends Component {
     };
   }
 
-  // https://dog.ceo/api/breeds/list/all
-
   componentDidMount() {
     fetch("https://dog.ceo/api/breeds/list/all")
       .then((res) => res.json())
-      .then((json) => {
+      .then((data) => {
+        const temp = Object.entries(data.message).map((item) => item[0]);
         this.setState({
-          data: json.message,
+          data: temp,
           dataLoaded: true,
         });
       });
   }
+
   render() {
-    const { data, dataLoaded } = this.state;
-    if (!dataLoaded) {
-      return (
-        <div>
-          <h6>Data is Being Loaded</h6>
-        </div>
-      );
-    } else {
-      return (
-        <div>
-          {Object.entries(data).map(item => <Display dat={item[0]} />)  }
-          {/* {Object.entries(data).map((item) => console.log(item[0]))} */}
-        </div>
-      );
-    }
+    return (
+      <div>
+        App Component
+        {this.state.dataLoaded && <Display data={this.state.data} />}
+      </div>
+    );
   }
 }
 
