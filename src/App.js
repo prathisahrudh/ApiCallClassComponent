@@ -1,21 +1,28 @@
 import React, { Component } from "react";
-
+import Display from "./Display";
 export class App extends Component {
   constructor() {
     super();
     this.state = {};
   }
 
+  // https://dog.ceo/api/breeds/list/all
+
   componentDidMount() {
-    // API CAlls
-    const API_LINK = "https://dog.ceo/api/breeds/list/all";
-    fetch(API_LINK)
+    fetch("https://dog.ceo/api/breeds/list/all")
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((data) => {
+        this.setState(data);
+      });
   }
 
   render() {
-    return <div>App</div>;
+    return (
+      <div>
+        App Component
+        <Display data={this.state.message} />
+      </div>
+    );
   }
 }
 
