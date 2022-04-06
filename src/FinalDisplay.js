@@ -7,7 +7,7 @@ export class FinalDisplay extends Component {
       <div>
         <div>
           {this.props.data}
-          <button onClick={() => this.props.handleDelete(this.props.data)}>Delete</button>
+          <button onClick={() => this.props.handleDelete(this.props.data, this.props.pos)}>Delete</button>
           <br />
           <br />
         </div>

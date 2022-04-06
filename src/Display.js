@@ -3,15 +3,17 @@ import FinalDisplay from "./FinalDisplay";
 export class Display extends Component {
   constructor(props) {
     super(props);
-    console.log(this.props.data);
     this.state = { data: this.props.data };
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleDelete(id) {
-    console.log(id);
-    let temp = this.state.filter(el => el!==id)
-    this.setState({data: temp})
-    console.log(this.state);
+  handleDelete(id, ind) {
+    console.log("Inside Handle Delete");
+    let tempStore = this.state.data;
+    const res = tempStore.filter((data) => data !== id);
+    this.setState({
+      data: res,
+    });
   }
   render() {
     return (
@@ -21,6 +23,7 @@ export class Display extends Component {
           return (
             <FinalDisplay
               key={index}
+              pos={index}
               data={item}
               handleDelete={this.handleDelete}
             />
