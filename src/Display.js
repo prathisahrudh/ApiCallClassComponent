@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 
 export class Display extends Component {
-
-    constructor(){
-        
-    }
-
   render() {
     return (
-      <div>Display</div>
+      <div>
+          <p>
+              {this.props.dat}
+          </p>
+      </div>
     )
   }
 }
